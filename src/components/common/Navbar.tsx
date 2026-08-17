@@ -6,7 +6,7 @@ import {
   X, 
   Layers, 
   Zap,
-  MessageCircle,
+  Users,
   Radio
 } from 'lucide-react';
 import { YouTubeIcon } from '../youtube/YouTubeSection';
@@ -29,6 +29,9 @@ export const Navbar: React.FC<NavbarProps> = ({
   const [mobileMenuOpen, setMobileMenuOpen] = useState<boolean>(false);
   const [scrolled, setScrolled] = useState<boolean>(false);
 
+  // Official WhatsApp Community Invite URL
+  const COMMUNITY_URL = "https://chat.whatsapp.com/CfovYK1W1r72DxPB8dpmia";
+
   useEffect(() => {
     setIsMuted(ambientAudio.getIsMuted());
 
@@ -48,12 +51,17 @@ export const Navbar: React.FC<NavbarProps> = ({
     { id: 'hero', label: 'HOME' },
     { id: 'podcast', label: 'PODCAST — COMING SOON', icon: Radio },
     { id: 'youtube', label: 'YOUTUBE', icon: YouTubeIcon },
-    { id: 'connect', label: 'CONNECT', icon: MessageCircle },
+    { id: 'community', label: 'COMMUNITY', icon: Users },
   ];
 
-  const handleOpenWhatsApp = () => {
+  const handleOpenCommunity = () => {
     ambientAudio.playHarmonicChime(700, 'sine', 0.08);
-    window.open('https://wa.me/919177611305?text=Hello%20Intellect%20Interchange!%20I%20would%20like%20to%20connect.', '_blank', 'noopener,noreferrer');
+    onNavigate('community');
+  };
+
+  const handleOpenCommunityDirect = () => {
+    ambientAudio.playHarmonicChime(700, 'sine', 0.08);
+    window.open(COMMUNITY_URL, '_blank', 'noopener,noreferrer');
   };
 
   return (
@@ -106,14 +114,14 @@ export const Navbar: React.FC<NavbarProps> = ({
 
         {/* Action Controls */}
         <div className="flex items-center gap-2">
-          {/* WhatsApp Direct Action */}
+          {/* Community Direct Action */}
           <button
-            onClick={handleOpenWhatsApp}
-            title="Connect on WhatsApp (+91 9177611305)"
+            onClick={handleOpenCommunity}
+            title="Join WhatsApp Community"
             className="hidden sm:inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full bg-emerald-950/60 border border-emerald-500/40 text-emerald-300 hover:bg-emerald-900/60 text-xs font-mono tracking-wider transition-all shadow-[0_0_15px_rgba(34,197,94,0.2)]"
           >
-            <MessageCircle className="w-3.5 h-3.5 fill-current" />
-            <span>WHATSAPP</span>
+            <Users className="w-3.5 h-3.5" />
+            <span>COMMUNITY</span>
           </button>
 
           {/* Ambient Audio Synth Toggle */}
@@ -181,11 +189,11 @@ export const Navbar: React.FC<NavbarProps> = ({
 
           <div className="pt-3 border-t border-slate-800/80 flex items-center justify-between">
             <button
-              onClick={handleOpenWhatsApp}
+              onClick={handleOpenCommunityDirect}
               className="text-xs font-mono text-emerald-400 flex items-center gap-2"
             >
-              <MessageCircle className="w-4 h-4 fill-current" />
-              <span>WhatsApp: +91 9177611305</span>
+              <Users className="w-4 h-4" />
+              <span>Join WhatsApp Community</span>
             </button>
             <button
               onClick={handleAudioToggle}

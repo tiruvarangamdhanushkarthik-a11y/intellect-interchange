@@ -452,9 +452,13 @@ export const UniverseCanvas: React.FC<UniverseCanvasProps> = ({
 
       // Animate Synaptic Pulses
       pulseSparks.forEach((spark) => {
-        spark.progress = (spark.progress + delta * spark.speed) % 1;
-        const pt = spark.curve.getPoint(spark.progress);
-        spark.mesh.position.copy(pt);
+        if (spark && spark.curve && spark.mesh) {
+          spark.progress = (spark.progress + delta * spark.speed) % 1;
+          const pt = spark.curve.getPoint(spark.progress);
+          if (pt) {
+            spark.mesh.position.copy(pt);
+          }
+        }
       });
 
       // Float nodes

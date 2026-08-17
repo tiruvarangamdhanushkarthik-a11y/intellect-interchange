@@ -1,5 +1,5 @@
 import React from 'react';
-import { ArrowUp, MessageCircle, Radio } from 'lucide-react';
+import { ArrowUp, Users, Radio } from 'lucide-react';
 import { YouTubeIcon } from '../youtube/YouTubeSection';
 import { ambientAudio } from '../../audio/ambientSynth';
 
@@ -8,16 +8,16 @@ interface FooterProps {
 }
 
 export const Footer: React.FC<FooterProps> = ({ onNavigate }) => {
-  const WHATSAPP_NUMBER = "+91 9177611305";
-  const WHATSAPP_RAW = "919177611305";
+  // Official WhatsApp Community Invite URL
+  const COMMUNITY_URL = "https://chat.whatsapp.com/CfovYK1W1r72DxPB8dpmia";
 
   const scrollToTop = () => {
     window.scrollTo({ top: 0, behavior: 'smooth' });
   };
 
-  const handleOpenWhatsApp = () => {
+  const handleOpenCommunity = () => {
     ambientAudio.playHarmonicChime(700, 'sine', 0.08);
-    window.open(`https://wa.me/${WHATSAPP_RAW}?text=Hello%20Intellect%20Interchange!%20I%20would%20like%20to%20connect.`, '_blank', 'noopener,noreferrer');
+    window.open(COMMUNITY_URL, '_blank', 'noopener,noreferrer');
   };
 
   return (
@@ -59,11 +59,11 @@ export const Footer: React.FC<FooterProps> = ({ onNavigate }) => {
             </button>
 
             <button
-              onClick={handleOpenWhatsApp}
+              onClick={handleOpenCommunity}
               className="hover:text-emerald-300 transition-colors flex items-center gap-2 text-emerald-400 font-bold"
             >
-              <MessageCircle className="w-4 h-4 fill-current" />
-              <span>WhatsApp: {WHATSAPP_NUMBER}</span>
+              <Users className="w-4 h-4" />
+              <span>WhatsApp Community</span>
             </button>
 
             <button

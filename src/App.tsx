@@ -30,7 +30,7 @@ export const App: React.FC = () => {
       'philosophy',
       'podcast',
       'youtube',
-      'connect',
+      'community',
     ];
 
     const handleScroll = () => {
@@ -178,7 +178,7 @@ export const App: React.FC = () => {
       {/* 5. YOUTUBE: INTELLECT_INTERCHANGE.CO. */}
       <YouTubeSection />
 
-      {/* 6. CONNECT: WhatsApp +91 9177611305 */}
+      {/* 6. WHATSAPP COMMUNITY: Join the Community */}
       <ConnectSection />
 
       {/* 7. Minimal Footer */}
