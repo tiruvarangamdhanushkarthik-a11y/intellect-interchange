@@ -1,3 +1,25 @@
+export type CommunityId =
+  | 'ai-tech'
+  | 'ece-vlsi'
+  | 'upsc-civil'
+  | 'student-reality'
+  | 'podcast';
+
+export interface CommunityItem {
+  id: string;
+  name: string;
+  shortTag: string;
+  tagline: string;
+  description: string;
+  iconName: string;
+  color: string;
+  coords: [number, number, number];
+  status: 'active' | 'coming_soon';
+  inviteUrl?: string;
+  topics: string[];
+  features: string[];
+}
+
 export type NodeCategory =
   | 'ai-tech'
   | 'education'
@@ -6,7 +28,10 @@ export type NodeCategory =
   | 'science'
   | 'history'
   | 'psychology'
-  | 'future';
+  | 'future'
+  | 'ece-vlsi'
+  | 'upsc-civil'
+  | 'podcast';
 
 export interface KnowledgeNodeData {
   id: NodeCategory;

@@ -7,10 +7,12 @@ import {
   Layers, 
   Zap,
   Users,
-  Radio
+  Radio,
+  Info,
+  ExternalLink
 } from 'lucide-react';
-import { YouTubeIcon } from '../youtube/YouTubeSection';
 import { ambientAudio } from '../../audio/ambientSynth';
+import { OFFICIAL_WHATSAPP_COMMUNITY_URL } from '../../data/communitiesData';
 
 interface NavbarProps {
   activeSection: string;
@@ -29,9 +31,6 @@ export const Navbar: React.FC<NavbarProps> = ({
   const [mobileMenuOpen, setMobileMenuOpen] = useState<boolean>(false);
   const [scrolled, setScrolled] = useState<boolean>(false);
 
-  // Official WhatsApp Community Invite URL
-  const COMMUNITY_URL = "https://chat.whatsapp.com/CfovYK1W1r72DxPB8dpmia";
-
   useEffect(() => {
     setIsMuted(ambientAudio.getIsMuted());
 
@@ -49,19 +48,14 @@ export const Navbar: React.FC<NavbarProps> = ({
 
   const navItems = [
     { id: 'hero', label: 'HOME' },
-    { id: 'podcast', label: 'PODCAST — COMING SOON', icon: Radio },
-    { id: 'youtube', label: 'YOUTUBE', icon: YouTubeIcon },
-    { id: 'community', label: 'COMMUNITY', icon: Users },
+    { id: 'communities', label: 'COMMUNITIES', icon: Users },
+    { id: 'podcast', label: 'PODCAST', icon: Radio },
+    { id: 'about', label: 'ABOUT', icon: Info },
   ];
 
-  const handleOpenCommunity = () => {
+  const handleJoinCommunity = () => {
     ambientAudio.playHarmonicChime(700, 'sine', 0.08);
-    onNavigate('community');
-  };
-
-  const handleOpenCommunityDirect = () => {
-    ambientAudio.playHarmonicChime(700, 'sine', 0.08);
-    window.open(COMMUNITY_URL, '_blank', 'noopener,noreferrer');
+    window.open(OFFICIAL_WHATSAPP_COMMUNITY_URL, '_blank', 'noopener,noreferrer');
   };
 
   return (
@@ -114,14 +108,15 @@ export const Navbar: React.FC<NavbarProps> = ({
 
         {/* Action Controls */}
         <div className="flex items-center gap-2">
-          {/* Community Direct Action */}
+          {/* Main Community Join CTA */}
           <button
-            onClick={handleOpenCommunity}
-            title="Join WhatsApp Community"
-            className="hidden sm:inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full bg-emerald-950/60 border border-emerald-500/40 text-emerald-300 hover:bg-emerald-900/60 text-xs font-mono tracking-wider transition-all shadow-[0_0_15px_rgba(34,197,94,0.2)]"
+            onClick={handleJoinCommunity}
+            title="Join Official WhatsApp Community"
+            className="hidden sm:inline-flex items-center gap-1.5 px-4 py-1.5 rounded-full bg-gradient-to-r from-cyan-600 to-cyan-700 hover:from-cyan-500 hover:to-cyan-600 border border-cyan-400/40 text-white text-xs font-mono font-bold tracking-wider transition-all shadow-[0_0_20px_rgba(0,240,255,0.25)] hover:scale-105"
           >
             <Users className="w-3.5 h-3.5" />
-            <span>COMMUNITY</span>
+            <span>JOIN COMMUNITY</span>
+            <ExternalLink className="w-3 h-3 opacity-80" />
           </button>
 
           {/* Ambient Audio Synth Toggle */}
@@ -167,7 +162,7 @@ export const Navbar: React.FC<NavbarProps> = ({
       {/* Mobile Navigation Drawer */}
       {mobileMenuOpen && (
         <div className="md:hidden bg-slate-950/95 border-b border-slate-800/90 backdrop-blur-xl px-4 py-6 space-y-3 animate-in slide-in-from-top duration-200">
-          <div className="grid grid-cols-1 gap-2">
+          <div className="grid grid-cols-2 gap-2">
             {navItems.map((item) => (
               <button
                 key={item.id}
@@ -189,8 +184,8 @@ export const Navbar: React.FC<NavbarProps> = ({
 
           <div className="pt-3 border-t border-slate-800/80 flex items-center justify-between">
             <button
-              onClick={handleOpenCommunityDirect}
-              className="text-xs font-mono text-emerald-400 flex items-center gap-2"
+              onClick={handleJoinCommunity}
+              className="text-xs font-mono text-cyan-400 flex items-center gap-2 font-bold"
             >
               <Users className="w-4 h-4" />
               <span>Join WhatsApp Community</span>
