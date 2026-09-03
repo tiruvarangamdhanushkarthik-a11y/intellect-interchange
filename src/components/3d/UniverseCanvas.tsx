@@ -393,12 +393,13 @@ export const UniverseCanvas: React.FC<UniverseCanvasProps> = ({
 
     // 9. ANIMATION LOOP
     let animationFrameId: number;
-    let clock = new THREE.Clock();
+    let lastTime = performance.now();
 
     const animate = () => {
       animationFrameId = requestAnimationFrame(animate);
-      const delta = clock.getDelta();
       const time = performance.now();
+      const delta = Math.min((time - lastTime) / 1000, 0.1);
+      lastTime = time;
 
       // Rotate Intellect Core
       if (coreGroup) {

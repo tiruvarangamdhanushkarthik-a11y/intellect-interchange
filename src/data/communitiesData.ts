@@ -76,13 +76,13 @@ export const COMMUNITIES_DATA: CommunityItem[] = [
     id: 'podcast',
     name: 'Podcast',
     shortTag: 'PODCAST',
-    tagline: 'Raw intellectual dialogues & unscripted explorations',
-    description: 'Conversations, interviews, ideas, and perspectives from student creators, engineers, and philosophers.',
+    tagline: 'Raw intellectual dialogues hosted by T. Dhanush Karthik',
+    description: 'Conversations, interviews, ideas, and perspectives from student creators, engineers, and philosophers hosted by T. Dhanush Karthik.',
     iconName: 'Radio',
     color: '#34d399',
     coords: [1.7, -2.6, 1.5],
     status: 'coming_soon',
-    topics: ['Cognitive Sovereignty', 'Future of Work', 'Engineering Mindset', 'Philosophy of Tech'],
-    features: ['Binaural Studio Audio', 'Student Guest Spots', 'Thought Experiments', 'Unscripted Debates']
+    topics: ['Host: T. Dhanush Karthik', 'Cognitive Sovereignty', 'Future of Work', 'Engineering Mindset'],
+    features: ['Hosted by T. Dhanush Karthik', 'Binaural Studio Audio', 'Student Guest Spots', 'Unscripted Debates']
   }
 ];

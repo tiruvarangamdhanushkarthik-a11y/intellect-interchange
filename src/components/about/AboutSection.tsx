@@ -70,6 +70,11 @@ export const AboutSection: React.FC = () => {
             <p className="text-lg sm:text-2xl font-serif italic text-white leading-relaxed">
               “To build an open space where student minds question systems, explore breakthrough technology, share real experiences, and collaborate without boundaries.”
             </p>
+            <div className="pt-2">
+              <span className="inline-flex items-center gap-1.5 px-3.5 py-1 rounded-full bg-slate-900/80 border border-cyan-500/30 text-[11px] font-mono text-cyan-300">
+                HOST & CURATOR: T. DHANUSH KARTHIK
+              </span>
+            </div>
           </div>
         </div>
 

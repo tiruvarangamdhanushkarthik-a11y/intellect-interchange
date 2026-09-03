@@ -1,5 +1,5 @@
 import React, { useEffect, useRef } from 'react';
-import { Radio, Disc } from 'lucide-react';
+import { Radio, Disc, Mic, User } from 'lucide-react';
 
 export const PodcastSection: React.FC = () => {
   const canvasRef = useRef<HTMLCanvasElement | null>(null);
@@ -76,7 +76,7 @@ export const PodcastSection: React.FC = () => {
             <div className="flex flex-col sm:flex-row items-center justify-between gap-4">
               <div className="flex items-center gap-3">
                 <div className="w-12 h-12 rounded-2xl bg-emerald-950/80 border border-emerald-500/50 flex items-center justify-center text-emerald-300 shadow-[0_0_25px_rgba(52,211,153,0.3)]">
-                  <Radio className="w-6 h-6" />
+                  <Mic className="w-6 h-6" />
                 </div>
                 <div>
                   <span className="text-[10px] font-mono uppercase tracking-widest text-slate-400 block">
@@ -88,13 +88,20 @@ export const PodcastSection: React.FC = () => {
                 </div>
               </div>
 
-              <span className="px-3 py-1 rounded-full bg-emerald-950/80 border border-emerald-400/40 text-[11px] font-mono text-emerald-300 uppercase tracking-wider font-bold">
-                IN STUDIO PRODUCTION
-              </span>
+              {/* Host & Status Badges */}
+              <div className="flex flex-wrap items-center justify-center sm:justify-end gap-2">
+                <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-cyan-950/80 border border-cyan-400/40 text-[11px] font-mono text-cyan-300 uppercase tracking-wider font-bold">
+                  <User className="w-3 h-3 text-cyan-400" />
+                  HOST: T. DHANUSH KARTHIK
+                </span>
+                <span className="px-3 py-1 rounded-full bg-emerald-950/80 border border-emerald-400/40 text-[11px] font-mono text-emerald-300 uppercase tracking-wider font-bold">
+                  IN STUDIO PRODUCTION
+                </span>
+              </div>
             </div>
 
             <p className="text-xs sm:text-sm text-slate-300 font-light leading-relaxed max-w-2xl">
-              We are recording unscripted dialogues with engineering innovators, civil services mentors, 
+              Hosted by <strong className="text-cyan-300 font-semibold">T. Dhanush Karthik</strong>, recording unscripted dialogues with engineering innovators, civil services mentors, 
               researchers, and students deconstructing industrial dogmas and exploring sovereign ideas.
             </p>
 
@@ -103,7 +110,7 @@ export const PodcastSection: React.FC = () => {
               <div className="flex items-center justify-between text-xs font-mono text-slate-400">
                 <span className="text-emerald-300 flex items-center gap-1.5">
                   <Disc className="w-3.5 h-3.5 text-emerald-400 animate-spin" />
-                  AUDIO SPECTRUM CORE
+                  AUDIO SPECTRUM CORE • HOSTED BY T. DHANUSH KARTHIK
                 </span>
                 <span className="text-slate-500">BINAURAL FREQUENCIES</span>
               </div>
