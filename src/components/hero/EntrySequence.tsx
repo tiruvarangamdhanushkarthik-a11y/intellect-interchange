@@ -1,160 +1,150 @@
 import React, { useState, useEffect } from 'react';
-import { Sparkles, ArrowRight, FastForward, Users } from 'lucide-react';
+import { ArrowRight, FastForward, Users, Sparkles, Terminal } from 'lucide-react';
 import { ambientAudio } from '../../audio/ambientSynth';
 
 interface EntrySequenceProps {
-  onExploreCommunities: () => void;
-  onJoinInterchange: () => void;
+  onExploreStudio: () => void;
+  onJoinCommunity: () => void;
 }
 
 export const EntrySequence: React.FC<EntrySequenceProps> = ({
-  onExploreCommunities,
-  onJoinInterchange,
+  onExploreStudio,
+  onJoinCommunity,
 }) => {
   const [stage, setStage] = useState<number>(0);
   const [hasSkipped, setHasSkipped] = useState<boolean>(false);
 
   useEffect(() => {
     if (hasSkipped) {
-      setStage(5);
+      setStage(4);
       return;
     }
 
     const t1 = setTimeout(() => {
       setStage(1);
-      ambientAudio.playHarmonicChime(220, 'sine', 0.04);
-    }, 500);
+    }, 400);
 
     const t2 = setTimeout(() => {
       setStage(2);
-      ambientAudio.playHarmonicChime(330, 'sine', 0.05);
-    }, 1400);
+    }, 1100);
 
     const t3 = setTimeout(() => {
       setStage(3);
-      ambientAudio.playHarmonicChime(440, 'sine', 0.06);
-    }, 2400);
+    }, 1900);
 
     const t4 = setTimeout(() => {
       setStage(4);
-      ambientAudio.playHarmonicChime(550, 'sine', 0.08);
-    }, 3500);
-
-    const t5 = setTimeout(() => {
-      setStage(5);
-      ambientAudio.playHarmonicChime(660, 'sine', 0.1);
-    }, 4600);
+    }, 2800);
 
     return () => {
       clearTimeout(t1);
       clearTimeout(t2);
       clearTimeout(t3);
       clearTimeout(t4);
-      clearTimeout(t5);
     };
   }, [hasSkipped]);
 
   const handleSkip = () => {
     setHasSkipped(true);
-    setStage(5);
-    ambientAudio.playHarmonicChime(528, 'sine', 0.08);
+    setStage(4);
   };
 
   return (
-    <div className="relative min-h-[90vh] flex flex-col items-center justify-center text-center px-4 py-16 z-20 pointer-events-none">
+    <div className="relative min-h-[92vh] flex flex-col items-center justify-center text-center px-4 py-16 z-20 pointer-events-none">
       {/* Skip Button */}
-      {stage < 5 && (
+      {stage < 4 && (
         <button
           onClick={handleSkip}
-          className="pointer-events-auto absolute top-6 right-6 flex items-center gap-1.5 px-3 py-1.5 rounded-full bg-slate-900/60 border border-slate-800 text-[11px] font-mono uppercase text-slate-400 hover:text-cyan-300 hover:border-cyan-500/40 transition-all backdrop-blur-sm"
+          className="pointer-events-auto absolute top-20 right-6 flex items-center gap-1.5 px-3 py-1.5 rounded-full bg-slate-900/60 border border-white/10 text-[11px] font-mono uppercase text-slate-400 hover:text-white transition-all backdrop-blur-sm"
         >
           <FastForward className="w-3 h-3" />
           Skip Intro
         </button>
       )}
 
-      {/* Main Container */}
-      <div className="max-w-4xl mx-auto space-y-6">
-        {/* Step 1: Status Badge */}
+      {/* Main Hero Container */}
+      <div className="max-w-4xl mx-auto space-y-7">
+        {/* Step 1: Studio Identity & Locked Design Tagline */}
         <div
-          className={`transition-all duration-1000 transform ${
-            stage >= 1 ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-4'
+          className={`transition-all duration-700 transform ${
+            stage >= 1 ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-3'
           }`}
         >
-          <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-cyan-950/40 border border-cyan-500/30 text-cyan-300 text-xs font-mono tracking-widest uppercase backdrop-blur-md shadow-[0_0_20px_rgba(0,240,255,0.15)]">
-            <span className="w-1.5 h-1.5 rounded-full bg-cyan-400 animate-pulse" />
-            <span>3D INTELLECT CORE ONLINE • 5 ORBITING COMMUNITIES</span>
+          <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full glass-pill text-slate-300 text-xs font-mono uppercase tracking-[0.25em]">
+            <span className="w-1.5 h-1.5 rounded-full bg-sky-400 animate-pulse" />
+            <span className="text-white font-semibold">WE BUILD WHAT COMES NEXT</span>
           </div>
         </div>
 
         {/* Step 2: Main Brand Heading */}
         <div
-          className={`transition-all duration-1000 delay-150 transform ${
-            stage >= 2 ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-6'
+          className={`transition-all duration-700 delay-100 transform ${
+            stage >= 2 ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-4'
           }`}
         >
-          <h1 className="text-4xl sm:text-6xl md:text-7xl font-extrabold tracking-tight text-white uppercase font-display leading-tight">
+          <h1 className="text-4xl sm:text-6xl md:text-7xl font-extrabold tracking-tight text-white uppercase font-display leading-[1.08]">
             INTELLECT <br className="hidden sm:inline" />
-            <span className="text-transparent bg-clip-text bg-gradient-to-r from-white via-cyan-200 to-cyan-400 drop-shadow-[0_0_35px_rgba(0,240,255,0.3)]">
+            <span className="text-transparent bg-clip-text bg-gradient-to-r from-white via-slate-200 to-sky-200">
               INTERCHANGE.CO
             </span>
           </h1>
         </div>
 
-        {/* Step 3: Subheading Tagline */}
+        {/* Step 3: Subheading & Tagline */}
         <div
-          className={`transition-all duration-1000 delay-250 transform ${
+          className={`transition-all duration-700 delay-150 transform ${
             stage >= 3 ? 'opacity-100 scale-100' : 'opacity-0 scale-95'
           }`}
         >
-          <div className="inline-block px-5 py-1 rounded-full bg-slate-900/60 border border-slate-800">
-            <span className="text-xs sm:text-sm md:text-base font-mono tracking-[0.35em] text-cyan-300 uppercase font-bold">
+          <div className="inline-flex items-center gap-2 px-4 py-1 rounded-full bg-slate-900/60 border border-white/[0.08]">
+            <span className="text-xs sm:text-sm font-mono tracking-[0.3em] text-slate-300 uppercase font-medium">
               CONNECT • THINK • CREATE
             </span>
           </div>
         </div>
 
-        {/* Step 4 & 5: Supporting text & Obvious CTAs */}
+        {/* Step 4: Editorial Supporting Copy & Obvious CTAs */}
         <div
-          className={`space-y-8 transition-all duration-1000 delay-350 transform ${
-            stage >= 4 ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'
+          className={`space-y-8 transition-all duration-700 delay-200 transform ${
+            stage >= 4 ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-6'
           }`}
         >
-          <p className="max-w-2xl mx-auto text-base sm:text-lg md:text-xl text-slate-300 font-light leading-relaxed">
-            A student-driven ecosystem connecting ideas, technology, communities and conversations beyond the classroom.
+          <p className="max-w-2xl mx-auto text-base sm:text-lg text-slate-300 font-light leading-relaxed">
+            A premium digital experience studio exploring emerging technology, autonomous systems, 
+            cognitive architectures, and student communities beyond the syllabus.
           </p>
 
-          {/* Obvious Primary & Secondary CTAs */}
-          <div className="pointer-events-auto flex flex-col sm:flex-row items-center justify-center gap-4 pt-2">
+          {/* Studio Primary & Secondary CTAs */}
+          <div className="pointer-events-auto flex flex-col sm:flex-row items-center justify-center gap-3.5 pt-2">
             <button
               onClick={() => {
                 ambientAudio.playHarmonicChime(528, 'sine', 0.1);
-                onExploreCommunities();
+                onExploreStudio();
               }}
-              className="btn-interchange w-full sm:w-auto px-8 py-4 text-sm group shadow-[0_0_30px_rgba(0,240,255,0.25)]"
+              className="btn-studio-primary w-full sm:w-auto px-8 py-3.5 text-xs group"
             >
-              <Users className="w-4 h-4 text-cyan-400 group-hover:scale-110 transition-transform" />
-              <span className="font-bold tracking-wider">EXPLORE COMMUNITIES</span>
-              <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
+              <Sparkles className="w-4 h-4 text-slate-950 group-hover:rotate-12 transition-transform" />
+              <span>EXPLORE STUDIO PORTFOLIO</span>
+              <ArrowRight className="w-3.5 h-3.5 group-hover:translate-x-1 transition-transform" />
             </button>
 
             <button
               onClick={() => {
-                ambientAudio.playHarmonicChime(440, 'sine', 0.08);
-                onJoinInterchange();
+                ambientAudio.playHarmonicChime(660, 'sine', 0.08);
+                onJoinCommunity();
               }}
-              className="btn-secondary w-full sm:w-auto px-8 py-4 text-sm group"
+              className="btn-studio-secondary w-full sm:w-auto px-8 py-3.5 text-xs group"
             >
-              <Sparkles className="w-4 h-4 text-slate-400 group-hover:text-cyan-300 transition-colors" />
-              <span className="font-bold tracking-wider">JOIN THE INTERCHANGE</span>
+              <Users className="w-3.5 h-3.5 text-sky-400 group-hover:scale-110 transition-transform" />
+              <span>JOIN COMMUNITY</span>
             </button>
           </div>
 
-          {/* 3D Interaction Micro Hint */}
-          <div className="pt-4">
+          {/* Minimal 3D Interaction Cue */}
+          <div className="pt-3">
             <span className="text-[10px] font-mono uppercase tracking-[0.25em] text-slate-500 flex items-center justify-center gap-2">
-              <span className="w-1.5 h-1.5 rounded-full bg-cyan-500/80 animate-ping" />
-              INTERACT WITH 3D INTELLECT CORE & ORBITING NODES ABOVE
+              <Terminal className="w-3 h-3 text-slate-400" />
+              SIGNATURE 3D INTELLECT CORE ONLINE • INTERACT SPATIALLY
             </span>
           </div>
         </div>

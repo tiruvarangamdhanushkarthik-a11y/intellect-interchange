@@ -3,10 +3,11 @@ import { UniverseCanvas } from './components/3d/UniverseCanvas';
 import { Navbar } from './components/common/Navbar';
 import { Footer } from './components/common/Footer';
 import { EntrySequence } from './components/hero/EntrySequence';
-import { CommunityEcosystem } from './components/communities/CommunityEcosystem';
-import { ConnectSection } from './components/connect/ConnectSection';
-import { PodcastSection } from './components/podcast/PodcastSection';
 import { AboutSection } from './components/about/AboutSection';
+import { StudioPortfolio } from './components/portfolio/StudioPortfolio';
+import { AIProductsShowcase } from './components/ai-products/AIProductsShowcase';
+import { CommunityEcosystem } from './components/communities/CommunityEcosystem';
+import { StudioEnquirySection } from './components/connect/StudioEnquirySection';
 import { ArrowDown, Sparkles } from 'lucide-react';
 import { ambientAudio } from './audio/ambientSynth';
 
@@ -20,25 +21,26 @@ export const App: React.FC = () => {
     return saved !== null ? saved === 'true' : isMobile;
   });
 
-  // Track active scroll section for Navbar
+  // Track active scroll section for Navbar capsule highlighting
   useEffect(() => {
     const sections = [
       'hero',
-      'communities',
-      'community',
-      'podcast',
       'about',
+      'portfolio',
+      'ai-showcase',
+      'communities',
+      'contact',
     ];
 
     const handleScroll = () => {
-      const scrollPos = window.scrollY + 200;
+      const scrollPos = window.scrollY + 250;
       for (const id of sections) {
         const el = document.getElementById(id);
         if (el) {
           const top = el.offsetTop;
           const height = el.offsetHeight;
           if (scrollPos >= top && scrollPos < top + height) {
-            setActiveSection(id === 'community' ? 'communities' : id);
+            setActiveSection(id);
             break;
           }
         }
@@ -79,8 +81,8 @@ export const App: React.FC = () => {
   };
 
   return (
-    <div className="relative min-h-screen bg-[#030508] text-slate-100 flex flex-col font-sans selection:bg-cyan-500/30 selection:text-cyan-200">
-      {/* Top Navbar with navigation links and Community CTA */}
+    <div className="relative min-h-screen bg-[#030508] text-slate-100 flex flex-col font-sans selection:bg-sky-500/30 selection:text-sky-200">
+      {/* Floating Glass Studio Navbar */}
       <Navbar
         activeSection={activeSection}
         onNavigate={handleNavigate}
@@ -88,16 +90,16 @@ export const App: React.FC = () => {
         onToggleLowPower={handleToggleLowPower}
       />
 
-      {/* Floating Core Click Toast */}
+      {/* Floating Spatial Core Interaction Notification */}
       {showCoreToast && (
-        <div className="fixed top-20 left-1/2 -translate-x-1/2 z-50 px-6 py-3 rounded-2xl glass-panel border border-cyan-400/60 bg-slate-950/90 text-cyan-200 text-xs font-mono tracking-wider shadow-[0_0_35px_rgba(0,240,255,0.4)] animate-in slide-in-from-top duration-300 flex items-center gap-3">
-          <Sparkles className="w-4 h-4 text-cyan-400 animate-spin" />
-          <span className="font-bold">THE INTELLECT CORE: EXPLORE YOUR INTERESTS BELOW</span>
+        <div className="fixed top-20 left-1/2 -translate-x-1/2 z-50 px-6 py-3 rounded-full glass-studio border border-sky-400/50 bg-slate-950/90 text-sky-200 text-xs font-mono tracking-wider shadow-[0_8px_32px_rgba(56,189,248,0.25)] animate-in slide-in-from-top duration-300 flex items-center gap-3">
+          <Sparkles className="w-4 h-4 text-sky-400 animate-spin" />
+          <span className="font-bold">THE INTELLECT CORE • NAVIGATING TO COMMUNITIES</span>
         </div>
       )}
 
-      {/* 1. HERO & 3D INTELLECT CORE */}
-      <section id="hero" className="relative w-full h-screen min-h-[700px] flex items-center justify-center overflow-hidden">
+      {/* 1. CINEMATIC HERO & SIGNATURE 3D INTELLECT CORE */}
+      <section id="hero" className="relative w-full h-screen min-h-[720px] flex items-center justify-center overflow-hidden">
         {/* 3D WebGL Canvas Layer */}
         <div className="absolute inset-0 z-0">
           <UniverseCanvas
@@ -111,41 +113,45 @@ export const App: React.FC = () => {
         {/* Hero Overlay & Entry Sequence */}
         <div className="relative z-10 w-full">
           <EntrySequence
-            onExploreCommunities={() => handleNavigate('communities')}
-            onJoinInterchange={() => handleNavigate('communities')}
+            onExploreStudio={() => handleNavigate('portfolio')}
+            onJoinCommunity={() => handleNavigate('contact')}
           />
         </div>
 
-        {/* Scroll down indicator */}
+        {/* Minimal Scroll Down Cue */}
         <div className="absolute bottom-6 left-1/2 -translate-x-1/2 z-20 flex flex-col items-center gap-1.5 pointer-events-auto">
           <button
-            onClick={() => handleNavigate('communities')}
-            className="text-slate-500 hover:text-cyan-300 transition-colors flex flex-col items-center gap-1 group"
+            onClick={() => handleNavigate('about')}
+            className="text-slate-500 hover:text-white transition-colors flex flex-col items-center gap-1 group"
+            aria-label="Scroll to Philosophy"
           >
-            <span className="text-[10px] font-mono uppercase tracking-widest text-slate-500 group-hover:text-cyan-300">
-              EXPLORE COMMUNITIES
+            <span className="text-[10px] font-mono uppercase tracking-widest text-slate-500 group-hover:text-slate-300">
+              DISCOVER STUDIO
             </span>
-            <ArrowDown className="w-4 h-4 animate-bounce text-cyan-400" />
+            <ArrowDown className="w-3.5 h-3.5 animate-bounce text-slate-400 group-hover:text-white" />
           </button>
         </div>
       </section>
 
-      {/* 2. CHOOSE YOUR COMMUNITY: Community Ecosystem */}
+      {/* 2. BRAND PHILOSOPHY & EDITORIAL MANIFESTO */}
+      <AboutSection />
+
+      {/* 3. DIGITAL EXPERIENCE PORTFOLIO (Podcast, YouTube, Cognitive Study, Whitepapers) */}
+      <StudioPortfolio />
+
+      {/* 4. AI PRODUCTS SHOWCASE (Operational Socratic Engine + Experimental Cognitive Simulator) */}
+      <AIProductsShowcase />
+
+      {/* 5. INNOVATION & COMMUNITY ECOSYSTEM (5 Interactive Communities) */}
       <CommunityEcosystem
         activeCommunityId={activeCommunityId}
         onSelectCommunity={handleSelectCommunity}
       />
 
-      {/* 3. WHATSAPP COMMUNITY CTA */}
-      <ConnectSection />
+      {/* 6. STUDIO CONNECT & ENQUIRY DESK (WhatsApp Community + Collaboration Briefs) */}
+      <StudioEnquirySection />
 
-      {/* 4. INTELLECT INTERCHANGE PODCAST (COMING SOON) */}
-      <PodcastSection />
-
-      {/* 5. ABOUT SECTION */}
-      <AboutSection />
-
-      {/* 6. MINIMAL ARCHITECTURAL FOOTER */}
+      {/* 7. ARCHITECTURAL MINIMAL STUDIO FOOTER */}
       <Footer onNavigate={handleNavigate} />
     </div>
   );
