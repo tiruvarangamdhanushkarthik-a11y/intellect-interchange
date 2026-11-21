@@ -1,7 +1,6 @@
 import React from 'react';
-import { ArrowUp, Users, Info, Briefcase, Bot, ExternalLink } from 'lucide-react';
+import { ArrowUp, Users, ExternalLink } from 'lucide-react';
 import { OFFICIAL_WHATSAPP_COMMUNITY_URL } from '../../data/communitiesData';
-import { ambientAudio } from '../../audio/ambientSynth';
 
 interface FooterProps {
   onNavigate: (sectionId: string) => void;
@@ -13,95 +12,80 @@ export const Footer: React.FC<FooterProps> = ({ onNavigate }) => {
   };
 
   const handleOpenCommunity = () => {
-    ambientAudio.playHarmonicChime(700, 'sine', 0.08);
     window.open(OFFICIAL_WHATSAPP_COMMUNITY_URL, '_blank', 'noopener,noreferrer');
   };
 
   return (
-    <footer className="border-t border-white/[0.06] bg-slate-950/95 relative z-30 pt-20 pb-14 text-slate-400">
-      <div className="max-w-6xl mx-auto px-4 sm:px-6">
-        <div className="flex flex-col lg:flex-row items-start lg:items-center justify-between gap-10 pb-14 border-b border-white/[0.06]">
-          {/* Brand & Studio Mission */}
-          <div className="space-y-3.5 max-w-md">
+    <footer className="border-t border-white/[0.08] bg-[#08090C] relative z-20 pt-16 pb-12 text-[#A8ADB7]">
+      <div className="max-w-7xl mx-auto px-4 sm:px-8">
+        <div className="flex flex-col md:flex-row items-start md:items-center justify-between gap-8 pb-12 border-b border-white/[0.06]">
+          {/* Brand & Mission Statement */}
+          <div className="space-y-3 max-w-md">
             <div className="flex items-center gap-2.5">
-              <div className="w-7 h-7 rounded-full bg-slate-900 border border-white/20 flex items-center justify-center">
-                <span className="w-1.5 h-1.5 rounded-full bg-sky-400" />
+              <div className="w-6 h-6 rounded-full bg-[#11151C] border border-white/20 flex items-center justify-center">
+                <span className="w-1.5 h-1.5 rounded-full bg-[#F28A45]" />
               </div>
-              <span className="text-sm font-mono tracking-[0.25em] font-bold text-white uppercase">
-                INTELLECT INTERCHANGE 2.0
+              <span className="text-xs font-mono tracking-[0.25em] font-bold text-[#F5F5F5] uppercase">
+                INTELLECT INTERCHANGE
               </span>
             </div>
 
-            <h3 className="text-xl sm:text-2xl font-bold font-display text-white tracking-tight">
-              WE BUILD WHAT COMES NEXT.
-            </h3>
-            
-            <p className="text-xs text-slate-400 font-light leading-relaxed">
-              A premium digital experience studio connecting ideas, emerging technology, autonomous systems, 
-              and student communities beyond the classroom. Hosted & curated by <span className="text-slate-200 font-medium">T. Dhanush Karthik</span>.
+            <p className="text-xs text-[#A8ADB7] font-light leading-relaxed">
+              An independent intellectual ecosystem exploring ideas, technology, autonomous systems and student realities beyond conventional boundaries.
             </p>
           </div>
 
-          {/* Quick Studio Navigation Links */}
+          {/* Quick Links */}
           <div className="flex flex-wrap items-center gap-5 sm:gap-7 text-xs font-mono">
             <button
-              onClick={() => onNavigate('about')}
-              className="hover:text-white transition-colors flex items-center gap-1.5 text-slate-300"
+              onClick={() => onNavigate('home')}
+              className="hover:text-[#F5F5F5] transition-colors cursor-pointer"
             >
-              <Info className="w-3.5 h-3.5 text-sky-400" />
-              <span>Philosophy</span>
+              Home
             </button>
-
             <button
-              onClick={() => onNavigate('portfolio')}
-              className="hover:text-white transition-colors flex items-center gap-1.5 text-slate-300"
+              onClick={() => onNavigate('founder')}
+              className="hover:text-[#F5F5F5] transition-colors cursor-pointer"
             >
-              <Briefcase className="w-3.5 h-3.5 text-sky-400" />
-              <span>Portfolio</span>
+              Founder
             </button>
-
             <button
-              onClick={() => onNavigate('ai-showcase')}
-              className="hover:text-white transition-colors flex items-center gap-1.5 text-slate-300"
+              onClick={() => onNavigate('projects')}
+              className="hover:text-[#F5F5F5] transition-colors cursor-pointer"
             >
-              <Bot className="w-3.5 h-3.5 text-sky-400" />
-              <span>AI Products</span>
+              Projects
             </button>
-
             <button
-              onClick={() => onNavigate('communities')}
-              className="hover:text-white transition-colors flex items-center gap-1.5 text-slate-300"
+              onClick={() => onNavigate('connect')}
+              className="hover:text-[#F5F5F5] transition-colors cursor-pointer"
             >
-              <Users className="w-3.5 h-3.5 text-sky-400" />
-              <span>Communities</span>
+              Connect
             </button>
-
             <button
               onClick={handleOpenCommunity}
-              className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-white/10 hover:bg-white/20 text-white font-medium transition-all"
+              className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full norxy-glass border border-white/10 hover:border-white/20 text-[#F5F5F5] transition-all cursor-pointer"
             >
-              <Users className="w-3 h-3 text-sky-300" />
-              <span>WhatsApp Community</span>
+              <Users className="w-3 h-3 text-[#F28A45]" />
+              <span>WhatsApp Hub</span>
               <ExternalLink className="w-2.5 h-2.5 opacity-60" />
             </button>
-
             <button
               onClick={scrollToTop}
-              className="p-2 rounded-full bg-slate-900 border border-white/10 hover:border-white/30 text-slate-300 hover:text-white transition-all ml-auto lg:ml-0"
+              className="p-2 rounded-full norxy-glass border border-white/10 hover:border-white/30 text-[#A8ADB7] hover:text-[#F5F5F5] transition-all ml-auto md:ml-0 cursor-pointer"
               title="Return to top"
               aria-label="Return to top"
             >
-              <ArrowUp className="w-4 h-4" />
+              <ArrowUp className="w-3.5 h-3.5" />
             </button>
           </div>
         </div>
 
-        {/* Bottom Credits & Studio Signature */}
-        <div className="pt-8 flex flex-col sm:flex-row items-center justify-between gap-4 text-xs text-slate-500 font-mono">
+        {/* Bottom Credits & Tagline */}
+        <div className="pt-8 flex flex-col sm:flex-row items-center justify-between gap-4 text-[11px] font-mono text-[#A8ADB7]/80">
           <div>
-            © 2026 Intellect Interchange.co • All rights reserved.
+            © 2026 INTELLECT INTERCHANGE.CO. • ALL RIGHTS RESERVED • FOUNDED BY <span className="text-[#F5F5F5] font-medium">T. DHANUSH KARTHIK</span>
           </div>
-          <div>
+          <div className="text-[#F28A45] tracking-widest uppercase">
             THINK BEYOND THE SYLLABUS.
           </div>
         </div>
